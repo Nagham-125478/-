@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوتيك | Boutique  </title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- الهيدر العصري الفخم -->
+    <header class="main-header">
+        <div class="header-overlay"></div>
+        <div class="header-content">
+            <h1 class="restaurant-name">✨  Boutique</h1>
+            <p class="slogan">أحدث صيحات الموضة والإكسسوارات - اطلبي قطعكِ المفضلة بنقرة واحدة</p>
+            
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="ابحثي عن قطعة، فستان، حقيبة، أو إكسسوار...">
+            </div>
+        </div>
+    </header>
+
+    <!-- شريط الأقسام السريع -->
+    <nav class="categories-nav">
+        <button class="nav-btn active" onclick="filterCategory('all', event)"><i class="fa-solid fa-border-all"></i> الكل</button>
+        <button class="nav-btn" onclick="filterCategory('dresses', event)"><i class="fa-solid fa-wand-magic-sparkles"></i> فساتين وأطقم</button>
+        <button class="nav-btn" onclick="filterCategory('bags', event)"><i class="fa-solid fa-bag-shopping"></i> حقائب</button>
+        <button class="nav-btn" onclick="filterCategory('accessories', event)"><i class="fa-solid fa-gem"></i> إكسسوارات ومجوهرات</button>
+        <button class="nav-btn" onclick="filterCategory('shoes', event)"><i class="fa-solid fa-shoe-prints"></i> أحذية</button>
+    </nav>
+
+    <!-- عرض الكروت -->
+    <main class="menu-container" id="menuContainer"></main>
+
+    <!-- زر السلة العائم السريع -->
+    <button class="cart-floating-btn" onclick="toggleCart()">
+        <div class="cart-btn-inner">
+            <span class="cart-badge" id="cartCount">0</span>
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>حقيبة التسوق</span>
+        </div>
+    </button>
+
+    <!-- نافذة السلة الجانبية -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2><i class="fa-solid fa-cart-flatbed"></i> تفاصيل الطلب</h2>
+                <button class="close-btn" onclick="toggleCart()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="cart-items" id="cartItemsContainer">
+                <p class="empty-msg">حقيبة التسوق فارغة حالياً</p>
+            </div>
+
+            <div class="cart-footer">
+                <div class="total-price-bar">
+                    <span>المجموع الإجمالي:</span>
+                    <span id="totalAmount">0.00 د.أ</span>
+                </div>
+                
+                <div id="checkoutSection">
+                    <label for="paymentMethod" class="checkout-label">اختر طريقة الدفع المفضلة:</label>
+                    <select id="paymentMethod" onchange="handlePaymentChange()" class="custom-select">
+                        <option value="cash">💵 نقداً (عند الاستلام)</option>
+                        <option value="cliq">📱 كليك (CliQ)</option>
+                    </select>
+
+                    <div id="cliqNotice" class="cliq-box">
+                        <div class="cliq-header">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <b>تفاصيل التحويل السريع (CliQ):</b>
+                        </div>
+                        <div class="cliq-details">
+                            <span>الرقم: <b id="cliqNum">0785522491</b></span>
+                            <button type="button" onclick="navigator.clipboard.writeText('0785522491'); alert('تم نسخ رقم CliQ بنجاح!');" class="copy-btn">
+                                <i class="fa-regular fa-copy"></i> نسخ
+                            </button>
+                        </div>
+                        <small class="cliq-sub">* يرجى إرفاق وصل التحويل بالدردشة بعد إرسال الطلب.</small>
+                    </div>
+
+                    <button class="whatsapp-btn" onclick="sendToWhatsApp()">
+                        <i class="fa-brands fa-whatsapp"></i> تأكيد الطلب عبر الواتساب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
