@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوتيك | Boutique  </title>
-    <link rel="stylesheet" href="style.css">
+    <title>بوتيك | Boutique</title>
+    <!-- استدعاء خط تجوال العربي -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ربط ملف التنسيقات CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-whatsapp="962785522491" data-cliq="0785522491">
 
     <!-- الهيدر العصري الفخم -->
     <header class="main-header">
         <div class="header-overlay"></div>
         <div class="header-content">
-            <h1 class="restaurant-name">✨  Boutique</h1>
+            <h1 class="restaurant-name">✨ Boutique</h1>
             <p class="slogan">أحدث صيحات الموضة والإكسسوارات - اطلبي قطعكِ المفضلة بنقرة واحدة</p>
             
             <div class="search-box">
@@ -75,8 +81,9 @@
                             <b>تفاصيل التحويل السريع (CliQ):</b>
                         </div>
                         <div class="cliq-details">
-                            <span>الرقم: <b id="cliqNum">0785522491</b></span>
-                            <button type="button" onclick="navigator.clipboard.writeText('0785522491'); alert('تم نسخ رقم CliQ بنجاح!');" class="copy-btn">
+                            <!-- الرقم ظاهر بنجوم للعين، ومحفوظ بالكامل للنسخ في data-full-num -->
+                            <span>الرقم: <b id="cliqNum" data-full-num="0785522491">078***2491</b></span>
+                            <button type="button" onclick="copyCliqNumber()" class="copy-btn">
                                 <i class="fa-regular fa-copy"></i> نسخ
                             </button>
                         </div>
@@ -84,13 +91,14 @@
                     </div>
 
                     <button class="whatsapp-btn" onclick="sendToWhatsApp()">
-                        <i class="fa-brands fa-whatsapp"></i> تأكيد الطلب عبر الواتساب
+                        <i class="fa-brands fa-whatsapp"></i> إرسال الطلب عبر الواتساب
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- ربط ملف الجافاسكربت -->
     <script src="script.js"></script>
 </body>
 </html>

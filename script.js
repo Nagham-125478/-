@@ -2,7 +2,12 @@
 // 1. الثوابت والإعدادات الرئيسية
 // ==========================================
 const DEFAULT_IMAGE = "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=500&q=80";
-const MY_PHONE_NUMBER = "962785522491"; // رقم الواتساب الخاص بك
+
+// دالة لجلب رقم الواتساب الكامل المخفي من الـ HTML
+function getWhatsAppNumber() {
+    const bodyPhone = document.body ? document.body.getAttribute("data-whatsapp") : null;
+    return bodyPhone || "962785522491";
+}
 
 // ==========================================
 // 2. قائمة منتجات البوتيك (Boutique Items)
@@ -162,8 +167,23 @@ function handlePaymentChange() {
     }
 }
 
+// دالة نسخ رقم CliQ الكامل (تنسخ الرقم الحقيقي المخفي)
+function copyCliqNumber() {
+    const cliqNumElem = document.getElementById("cliqNum");
+    const bodyCliq = document.body ? document.body.getAttribute("data-cliq") : null;
+    
+    // يقرأ الرقم الكامل من data-full-num أو data-cliq أو الافتراضي
+    const fullNumber = cliqNumElem ? (cliqNumElem.getAttribute("data-full-num") || bodyCliq) : "0785522491";
+    
+    navigator.clipboard.writeText(fullNumber).then(() => {
+        alert("تم نسخ رقم CliQ بنجاح!");
+    }).catch(() => {
+        alert("رقم التحويل هو: " + fullNumber);
+    });
+}
+
 // ==========================================
-// 5. إرسال الطلب عبر الواتساب
+// 5. إرسال الطلب عبر الواتساب (باستخدام الرقم الكامل)
 // ==========================================
 function sendToWhatsApp() {
     if (cart.length === 0) {
@@ -199,7 +219,8 @@ function sendToWhatsApp() {
     }
 
     const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${MY_PHONE_NUMBER}?text=${encodedMessage}`;
+    const targetPhone = getWhatsAppNumber();
+    const whatsappUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
 
     window.open(whatsappUrl, "_blank");
 }
